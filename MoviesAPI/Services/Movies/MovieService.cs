@@ -24,4 +24,14 @@ public class MovieService : IMovieService{
 
         return all;
     }
+
+    public void UpsertMovie(Movie movie)
+    {
+        movies[movie.Id] = movie;
+    }
+
+    public void DeleteMovie(Guid id)
+    {
+        movies.Remove(id);
+    }
 }

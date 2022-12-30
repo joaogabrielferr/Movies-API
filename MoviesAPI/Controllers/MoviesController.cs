@@ -7,15 +7,15 @@ namespace MoviesAPI.Controllers;
 // if i write [Route("[Controller]")] then the prefix of the routes will be the name of the class without the word controller
 public class MoviesController : ControllerBase{
     
-    //behind the scenes, every time, every time a request is sent to the service,
+    //behind the scenes, every time a request is made,
     //the framework creates a new MoviesController object
     //when it does that, it also tries to create a new IMovieService object
-    //because of that, the framework doesnt know how to isntanciate the interface the controller is requesting
-    //This is fixed defining in the program.cs file how to create the ImovieService interface (defining it as a sigleton)
+    //because of that, the framework doesnt know how to instanciate the interface the controller is requesting
+    //This is fixed by defining in the program.cs file how to create the ImovieService interface (defining it as a sigleton, scoped, etc)
 
     public readonly IMovieService _movieService;
 
-    public MoviesController(IMovieService movieService)
+    public MoviesController(IMovieService movieService) //independence injection vrau
     {
         _movieService = movieService;
     }
@@ -75,13 +75,20 @@ public class MoviesController : ControllerBase{
     [HttpPut("{id:guid}")]
     public IActionResult UpsertMovie(Guid id, UpsertBreakfastRequest request)
     {
+        Movie movie = new Movie(Guid.NewGuid(),request.Name,request.Description,request.MovieGenres,request.releaseDateTime,DateTime.UtcNow);
+        
+        _movieService.UpsertMovie(movie);
+
+        //return 201 if a new movie is created
+        // return NoContent(); //returning no content if the param id is already the ID of some movie in the database
         return Ok(request);
     }
 
     [HttpDelete("{id:guid}")]
     public IActionResult DeleteMovie(Guid id)
     {
-        return Ok(id);
+        _movieService.DeleteMovie(id);
+        return NoContent();
     }
 
 }
