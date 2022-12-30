@@ -1,0 +1,13 @@
+POST http://localhost:5060/api/movies/
+Content-Type: application/json
+
+{
+    "Name" : "Avatar 2",
+    "Description" : "Return of the big blue guys",
+    "MovieGenres" : [
+        "Action",
+        "Adventure",
+        "Sei la"
+    ],
+    "ReleaseDateTime" : "2022-12-12T10:00:00"
+}

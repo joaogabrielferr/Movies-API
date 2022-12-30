@@ -1,0 +1,4 @@
+GET https://localhost:7073/api/movies/all
+
+###
+GET https://localhost:7073/api/movies/e06206ac-5451-4889-8b85-35f6eef8144b
