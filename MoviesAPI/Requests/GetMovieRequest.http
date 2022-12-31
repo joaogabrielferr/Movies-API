@@ -1,4 +1,7 @@
 GET https://localhost:7073/api/movies/all
 
 ###
-GET https://localhost:7073/api/movies/e06206ac-5451-4889-8b85-35f6eef8144b
+GET https://localhost:7073/api/movies/e1d48912-98b2-4494-a68c-b03e441c5bf2
+
+###
+DELETE https://localhost:7073/api/movies/e1d48912-98b2-4494-a68c-b03e441c5bf2
